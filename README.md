@@ -48,24 +48,6 @@ Probability: 0.6674373149871826
 - `--img_file`: image that is used for inference.
 - `--dump`: dumps the output of the NN to CSV file(s) saved in the `dump` folder. Can be used as input for the [CTCDecoder](https://github.com/githubharald/CTCDecoder).
 
-## Integrate word beam search decoding
-
-The [word beam search decoder](https://repositum.tuwien.ac.at/obvutwoa/download/pdf/2774578) can be used instead of the two decoders shipped with TF.
-Words are constrained to those contained in a dictionary, but arbitrary non-word character strings (numbers, punctuation marks) can still be recognized.
-The following illustration shows a sample for which word beam search is able to recognize the correct text, while the other decoders fail.
-
-![decoder_comparison](./doc/decoder_comparison.png)
-
-Follow these instructions to integrate word beam search decoding:
-
-1. Clone repository [CTCWordBeamSearch](https://github.com/githubharald/CTCWordBeamSearch)
-2. Compile and install by running `pip install .` at the root level of the CTCWordBeamSearch repository
-3. Specify the command line option `--decoder wordbeamsearch` when executing `main.py` to actually use the decoder
-
-The dictionary is automatically created in training and validation mode by using all words contained in the IAM dataset (i.e. also including words from validation set) and is saved into the file `data/corpus.txt`.
-Further, the manually created list of word-characters can be found in the file `model/wordCharList.txt`.
-Beam width is set to 50 to conform with the beam width of vanilla beam search decoding.
-
 ## Train model on IAM dataset
 
 ### Prepare dataset
